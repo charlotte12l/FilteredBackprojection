@@ -8,7 +8,7 @@ using namespace cv;
 using namespace std;
 
 
-Mat iradon(Mat& filtimg)
+Mat iradon(Mat& filtimg)// function for backprojection
 {
 	Mat fbp = Mat::zeros(filtimg.size().height, filtimg.size().height, CV_32FC1);
 	float m, new_theta;
@@ -23,7 +23,7 @@ Mat iradon(Mat& filtimg)
 		{
             m = ((j - 0.5*fbp.size().width)*cos(new_theta*n) + (i- 0.5*fbp.size().height)*sin(new_theta*n) + 0.5*filtimg.size().height);
             if ((m>0) && (m<filtimg.size().height))
-                //²åÖµ
+                //interpolation
                 fbp.at<float>(i, j) += (floor(m)+1-m)*filtimg.at<float>(floor(m), n)+(m-floor(m))*filtimg.at<float>(floor(m)+1, n);
         }
 	}
@@ -38,10 +38,10 @@ int main()
     Mat img = imread("Shepp_Logan.jpg",0);
 
     Mat P = img.clone();
-    P.convertTo(P,CV_32FC1);//32Î»¸¡µã µ¥Í¨µÀ
+    P.convertTo(P,CV_32FC1);//float32
     normalize(P, P, 0, 1, NORM_MINMAX, CV_32F);
 
-    int angle=360;//½Ç¶ÈµÄÊýÄ¿
+    int angle=360;//number of angles
     Mat radon_image = Mat(P.rows,angle,CV_32FC1);
     int center = P.rows/2;
 
@@ -53,8 +53,8 @@ int main()
                         0, 0, 1};
     Mat m0 = Mat(3,3,CV_32FC1,shift0);
     Mat m1 = Mat(3,3,CV_32FC1,shift1);
-    float *theta = new float[angle];//Ðý×ª½Ç¶È
-    //½øÐÐÍ¶Ó°
+    float *theta = new float[angle];//rotation angle
+    //projection
     for(int t=0;t<angle;t++)
     {
         theta[t]=t*CV_PI/angle;
@@ -84,16 +84,16 @@ int main()
     cout<<"Radon Succeed"<<endl;
     waitKey();
 
-     //µÃµ½DFTµÄ×î¼Ñ³ß´ç£¬ÒÔ¼ÓËÙ¼ÆËã
+     //get best size of DFT
     Mat paddedImg, paddedImg_norm;
     int m = getOptimalDFTSize(radon_image.rows);
     int n = getOptimalDFTSize(radon_image.cols);
 
 
-    cout << "Í¼Æ¬Ô­Ê¼³ß´çÎª£º" << radon_image.cols << "*" << radon_image.rows <<endl;
-    cout << "DFT×î¼Ñ³ß´çÎª£º" << n << "*" << m <<endl;
+    cout << "å›¾ç‰‡åŽŸå§‹å°ºå¯¸ä¸ºï¼š" << radon_image.cols << "*" << radon_image.rows <<endl;//original size
+    cout << "DFTæœ€ä½³å°ºå¯¸ä¸ºï¼š" << n << "*" << m <<endl;//DFT size
 
-    //Ìî³äÍ¼Ïñ
+    //padding image
     copyMakeBorder(radon_image, paddedImg, 0, m - radon_image.rows,
                    0, n - radon_image.cols, BORDER_CONSTANT, Scalar::all(0));
     normalize(paddedImg,paddedImg_norm,0,1,CV_MINMAX);
@@ -101,17 +101,17 @@ int main()
     waitKey();
 
     transpose(paddedImg,paddedImg);
-    //½«Ìî³äµÄÍ¼Ïñ×é³ÉÒ»¸ö¸´ÊýµÄ¶þÎ¬Êý×é£¨Á½¸öÍ¨µÀµÄMat£©£¬ÓÃÓÚDFT
-    Mat matArray[] = {Mat_<float>(paddedImg), Mat::zeros(paddedImg.size(), CV_32F)};//Á½²ã£¬Ò»²ãÊµ²¿£¬Ò»²ãÐé²¿
+    // get a complex number mat(2 channels) for DFT
+    Mat matArray[] = {Mat_<float>(paddedImg), Mat::zeros(paddedImg.size(), CV_32F)};//two part:real part &imaginary part
     Mat complexInput, complexOutput;
-    merge(matArray, 2, complexInput);//ÈÚºÏºó½øÐÐdft
+    merge(matArray, 2, complexInput);//merge and dft
 
-    //¸µÀïÒ¶±ä»»
+    //Fourier transform
     dft(complexInput, complexOutput,DFT_ROWS|DFT_COMPLEX_OUTPUT,0);
     cout<<"dft done"<<endl;
     split(complexOutput,matArray);
 
-    //Ê¹ÓÃR-L´°½øÐÐÂË²¨
+    //R-L filtering
     float M = matArray[1].size().width - 1;
     for (int i = 0; i<matArray[0].size().height;i++)
     {
@@ -123,10 +123,10 @@ int main()
     }
     merge(matArray,2,complexOutput);
     Mat filteredimg;
-    //¸µÀïÒ¶·´±ä»»
+    //IFFT
     dft(complexOutput,filteredimg, DFT_INVERSE|DFT_ROWS|DFT_REAL_OUTPUT);
     transpose(filteredimg,filteredimg);
-    //ÏÔÊ¾Í¶Ó°½á¹û
+    //Filtered Projection Result 
     imshow("FILTERED:",filteredimg);
     cout<<"filtered img size:"<<filteredimg.size()<<endl;
 
@@ -139,7 +139,7 @@ int main()
 
 
 
-    //·´Í¶Ó°
+    //Back projection
 	fbp = iradon(filteredimg);
 
 
