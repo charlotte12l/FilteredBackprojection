@@ -6,13 +6,13 @@ I wrote two versions (MATLAB & C++) to implement the Filtered Backprojection Alg
 This is the overview of GUI. There are 5 modules:![](https://github.com/charlotte12l/FilteredBackprojection/blob/master/GUI_overview.png) 
 
 ### 1.1 Read Image
-Click "Shepp Logan" to open a standard Shepp Logan model
-Click "other image" to read other pictures from the computer, which will be automatically converted to single channel gray-scale image.
+· Click "Shepp Logan" to open a standard Shepp Logan model
+· Click "other image" to read other pictures from the computer, which will be automatically converted to single channel gray-scale image.
 
 ### 1.2 Projection
-After reading the picture, we should use the projection module for radon transformation.  
+· After reading the picture, we should use the projection module for radon transformation.  
 
-First, enter the number of projection angles at the projection number.      
+· First, enter the number of projection angles at the projection number.      
 
 After that, click "projection", the software executes the projection program, and displays the projection process and results in a white box.
 
