@@ -25,6 +25,9 @@ This is the overview of GUI. There are 5 modules:![](https://github.com/charlott
 - After reconstruction, click "reconstruction evaluation" to calculate and display the normalized mean square distance criterion d and normalized average absolute distance criterion r.
 
 ### Result
-This is the result of using the GUI for shepp logan.![](https://github.com/charlotte12l/FilteredBackprojection/blob/master/GUI_sample.png)
+This is the result of using the GUI for Shepp Logan.![](https://github.com/charlotte12l/FilteredBackprojection/blob/master/GUI_sample.png)
 
 
+## 2. C++
+C++ version is a relatively simple one due to the limitation of time.
+Here is the result of C++ FBP for Shepp Logan, it is not as good as the MATLAB version.![](https://github.com/charlotte12l/FilteredBackprojection/blob/master/cpp_result.png)
