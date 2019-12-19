@@ -79,7 +79,7 @@ function Shepp_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 global P
-P = phantom(256);%样本图片
+P = phantom(256);%sample image
 imshow(P,[],'parent',handles.axes1);
 set(handles.axes1,'YTick', []);  
 set(handles.axes1,'XTick', []);  
@@ -91,8 +91,8 @@ function Other_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 global P
-[filename,filepath]=uigetfile('*.*','请选择文件');%选择其他文件
-P = imread(strcat(filepath,filename));%读取图片文件
+[filename,filepath]=uigetfile('*.*','璇烽�夋嫨鏂囦欢');%select other files except sample image
+P = imread(strcat(filepath,filename));% read files 
 P = im2double(rgb2gray(P));
 imshow(P,[],'parent',handles.axes1);
 set(handles.axes1,'YTick', []);  
@@ -126,7 +126,7 @@ function Projection_Callback(hObject, eventdata, handles)
 % hObject    handle to Projection (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-%进行投影
+%Projection
 global P
 global proj
 global h
@@ -134,13 +134,13 @@ global w
 global theta
 global anglenum
 
-anglenum=str2num(get(handles.ProjectionNum,'string'));%投影角度数
+anglenum=str2num(get(handles.ProjectionNum,'string'));%number of angles for projection
 [h,w] = (size(P));
 
-step=180/anglenum;%角度步长
+step=180/anglenum;%瑙掑害姝ラ暱
 theta = step:step:180;  
   
-% radon 变换
+% radon transform
 proj = projection(P,theta,handles);  
 
 
@@ -151,7 +151,7 @@ function Filtering_Callback(hObject, eventdata, handles)
 % hObject    handle to Filtering (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-%进行滤波
+%Filtering
 global proj
 global width
 global proj_ifft
@@ -160,28 +160,28 @@ global anglenum
 width = 2^nextpow2(size(proj,1));
 proj_fft = fft(proj, width);  
 
-val = get(handles.popupmenu1,'value'); %选择滤波器
+val = get(handles.popupmenu1,'value'); %select filter
 switch val
-    case 1%矩形窗
+    case 1 %retangular filtering
         filter = rectwin(width);
-    case 2%RL滤波器
+    case 2 %RL filtering
      	filter = triang(width);
-    case 3%SL滤波器
+    case 3 %SL filtering
     	filter = triang(width);
         for i = 1:(width/2)
             filter(i) = filter(i)*sinc(i/width/2);
             filter(width+1-i) = filter(width-i)*sinc(i/width/2);
         end
 end
-%滤波
+%filtering
 proj_filtered = zeros(width,anglenum);
 for i = 1:anglenum
  	proj_filtered(:,i) = proj_fft(:,i).*filter;  
 end  
   
-%傅里叶逆变换
+% IFFT
 proj_ifft = real(ifft(proj_filtered)); 
-%显示滤波结果
+% filtering result
 imshow(proj_ifft(1:size(proj,1),:),[],'parent',handles.axes3); 
 set(handles.axes3,'XTick', []);  
 set(handles.axes3,'YTick', []);  
@@ -192,7 +192,7 @@ function Reconstruction_Callback(hObject, eventdata, handles)
 % hObject    handle to Reconstruction (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-% 图像重建，反投影
+% Backprojection
 global h
 global w
 global anglenum
@@ -201,7 +201,7 @@ global proj
 global proj_ifft
 global fbp_final
 
-%进行iradon变换
+%iradon transform
 fbp = zeros(h,w);
 
 for i = 1:anglenum
@@ -210,10 +210,10 @@ for i = 1:anglenum
           	t = -(x-h/2)*sind(theta(i))+(y-w/2)*cosd(theta(i));  
           	fbp(x,y)=fbp(x,y)+...
                 (floor(t)+1-t)*proj_ifft(floor(t)+round(size(proj,1)/2),i)+...
-                (t-floor(t))*proj_ifft(floor(t)+1+round(size(proj,1)/2),i);%线性插值
+                (t-floor(t))*proj_ifft(floor(t)+1+round(size(proj,1)/2),i);%interpolation
         end
     end
-    if mod(i,5) == 0 %图像显示
+    if mod(i,5) == 0 %show img
         imshow(fbp/anglenum,[],'parent',handles.axes4);  
         set(handles.axes4,'YTick', []);  
         set(handles.axes4,'XTick', []);  
@@ -230,22 +230,22 @@ fbp_final = fbp/anglenum;
 
 
 function output = projection(img,angle,handles)
-%投影函数
+% function for projection
 [h, w] = size(img);
 
 [~,angle2] = size(angle);
-proj_size = [ceil(sqrt(h*h+w*w)/2)*2+1, angle2];%图片对角线的长度,示例图为285
+proj_size = [ceil(sqrt(h*h+w*w)/2)*2+1, angle2];% Diagnoal length
 
-proj = zeros(proj_size);%投影 对角线长度*角度数
+proj = zeros(proj_size);%projection 
 
-for n = 1:proj_size(2)%角度数
-    for i = -(proj_size(1)-1)/2:(proj_size(1)-1)/2%对角线的长度
+for n = 1:proj_size(2)%number of projection
+    for i = -(proj_size(1)-1)/2:(proj_size(1)-1)/2%Diagnoal length
         counter = 0;
         for j =  -(proj_size(1)-1)/2:(proj_size(1)-1)/2
-            %通过i,j找到对应的坐标点
+            %find coordinate x,y 
             x = i*sind(angle(n))+j*cosd(angle(n))+h/2;
             y = -i*cosd(angle(n))+j*sind(angle(n))+w/2;
-            if (x<h)&&(x>1)&&(y<w)&&(y>1)%确定该位置在图像内
+            if (x<h)&&(x>1)&&(y<w)&&(y>1)%make sure (x,y) is  in the image
                 counter = counter + img(floor(x),floor(y));
             end
         end
@@ -296,9 +296,9 @@ global fbp_final
 
 compare = abs(im2double(P)-im2double(fbp_final));
 
-%归一化均方距离判据
+%normalized mean square distance
 d = sqrt(sum(sum(compare.^2))/sum(sum((im2double(P)-mean(mean(im2double(P)))).^2)));
-%归一化平均绝对距离判据
+%Normalized mean absolute distance
 r = sum(sum(abs(compare)))/sum(sum(im2double(P)));
 set(handles.d,'string',num2str(d));
 set(handles.r,'string',num2str(r));
