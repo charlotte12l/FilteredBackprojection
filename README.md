@@ -30,4 +30,6 @@ This is the result of using the GUI for Shepp Logan.![](https://github.com/charl
 
 ## 2. C++
 C++ version is a relatively simple one due to the limitation of time.
-Here is the result of C++ FBP for Shepp Logan, it is not as good as the MATLAB version.![](https://github.com/charlotte12l/FilteredBackprojection/blob/master/cpp_result.png)
+Here is the result of C++ FBP for Shepp Logan, it is not as good as the MATLAB version.
+
+![](https://github.com/charlotte12l/FilteredBackprojection/blob/master/cpp_result.png)
