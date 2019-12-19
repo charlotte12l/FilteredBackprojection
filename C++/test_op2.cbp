@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="test_op2" />
+		<Option pch_mode="2" />
+		<Option compiler="copy_of_gnu_gcc_compiler" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/test_op2" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="copy_of_gnu_gcc_compiler" />
+				<Compiler>
+					<Add option="-g" />
+					<Add directory="D:/Program/CodeBlocks/opencv/include" />
+					<Add directory="D:/Program/CodeBlocks/opencv/include/opencv" />
+					<Add directory="D:/Program/CodeBlocks/opencv/include/opencv2" />
+				</Compiler>
+				<Linker>
+					<Add library="D:/Program/opencv/binaries/lib/libopencv_calib3d_pch_dephelp.a" />
+					<Add library="D:/Program/opencv/binaries/lib/libopencv_calib3d320.dll.a" />
+					<Add library="D:/Program/opencv/binaries/lib/libopencv_core_pch_dephelp.a" />
+					<Add library="D:/Program/opencv/binaries/lib/libopencv_core320.dll.a" />
+					<Add library="D:/Program/opencv/binaries/lib/libopencv_features2d_pch_dephelp.a" />
+					<Add library="D:/Program/opencv/binaries/lib/libopencv_features2d320.dll.a" />
+					<Add library="D:/Program/opencv/binaries/lib/libopencv_flann_pch_dephelp.a" />
+					<Add library="D:/Program/opencv/binaries/lib/libopencv_flann320.dll.a" />
+					<Add library="D:/Program/opencv/binaries/lib/libopencv_highgui_pch_dephelp.a" />
+					<Add library="D:/Program/opencv/binaries/lib/libopencv_highgui320.dll.a" />
+					<Add library="D:/Program/opencv/binaries/lib/libopencv_imgcodecs_pch_dephelp.a" />
+					<Add library="D:/Program/opencv/binaries/lib/libopencv_imgcodecs320.dll.a" />
+					<Add library="D:/Program/opencv/binaries/lib/libopencv_imgproc_pch_dephelp.a" />
+					<Add library="D:/Program/opencv/binaries/lib/libopencv_imgproc320.dll.a" />
+					<Add library="D:/Program/opencv/binaries/lib/libopencv_ml_pch_dephelp.a" />
+					<Add library="D:/Program/opencv/binaries/lib/libopencv_ml320.dll.a" />
+					<Add library="D:/Program/opencv/binaries/lib/libopencv_objdetect_pch_dephelp.a" />
+					<Add library="D:/Program/opencv/binaries/lib/libopencv_objdetect320.dll.a" />
+					<Add library="D:/Program/opencv/binaries/lib/libopencv_perf_calib3d_pch_dephelp.a" />
+					<Add library="D:/Program/opencv/binaries/lib/libopencv_perf_core_pch_dephelp.a" />
+					<Add library="D:/Program/opencv/binaries/lib/libopencv_perf_features2d_pch_dephelp.a" />
+					<Add library="D:/Program/opencv/binaries/lib/libopencv_perf_imgcodecs_pch_dephelp.a" />
+					<Add library="D:/Program/opencv/binaries/lib/libopencv_perf_imgproc_pch_dephelp.a" />
+					<Add library="D:/Program/opencv/binaries/lib/libopencv_perf_objdetect_pch_dephelp.a" />
+					<Add library="D:/Program/opencv/binaries/lib/libopencv_perf_photo_pch_dephelp.a" />
+					<Add library="D:/Program/opencv/binaries/lib/libopencv_perf_stitching_pch_dephelp.a" />
+					<Add library="D:/Program/opencv/binaries/lib/libopencv_perf_superres_pch_dephelp.a" />
+					<Add library="D:/Program/opencv/binaries/lib/libopencv_perf_video_pch_dephelp.a" />
+					<Add library="D:/Program/opencv/binaries/lib/libopencv_perf_videoio_pch_dephelp.a" />
+					<Add library="D:/Program/opencv/binaries/lib/libopencv_photo_pch_dephelp.a" />
+					<Add library="D:/Program/opencv/binaries/lib/libopencv_photo320.dll.a" />
+					<Add library="D:/Program/opencv/binaries/lib/libopencv_shape_pch_dephelp.a" />
+					<Add library="D:/Program/opencv/binaries/lib/libopencv_shape320.dll.a" />
+					<Add library="D:/Program/opencv/binaries/lib/libopencv_stitching_pch_dephelp.a" />
+					<Add library="D:/Program/opencv/binaries/lib/libopencv_stitching320.dll.a" />
+					<Add library="D:/Program/opencv/binaries/lib/libopencv_superres_pch_dephelp.a" />
+					<Add library="D:/Program/opencv/binaries/lib/libopencv_superres320.dll.a" />
+					<Add library="D:/Program/opencv/binaries/lib/libopencv_test_calib3d_pch_dephelp.a" />
+					<Add library="D:/Program/opencv/binaries/lib/libopencv_test_core_pch_dephelp.a" />
+					<Add library="D:/Program/opencv/binaries/lib/libopencv_test_features2d_pch_dephelp.a" />
+					<Add library="D:/Program/opencv/binaries/lib/libopencv_test_flann_pch_dephelp.a" />
+					<Add library="D:/Program/opencv/binaries/lib/libopencv_test_highgui_pch_dephelp.a" />
+					<Add library="D:/Program/opencv/binaries/lib/libopencv_test_imgcodecs_pch_dephelp.a" />
+					<Add library="D:/Program/opencv/binaries/lib/libopencv_test_imgproc_pch_dephelp.a" />
+					<Add library="D:/Program/opencv/binaries/lib/libopencv_test_ml_pch_dephelp.a" />
+					<Add library="D:/Program/opencv/binaries/lib/libopencv_test_objdetect_pch_dephelp.a" />
+					<Add library="D:/Program/opencv/binaries/lib/libopencv_test_photo_pch_dephelp.a" />
+					<Add library="D:/Program/opencv/binaries/lib/libopencv_test_shape_pch_dephelp.a" />
+					<Add library="D:/Program/opencv/binaries/lib/libopencv_test_stitching_pch_dephelp.a" />
+					<Add library="D:/Program/opencv/binaries/lib/libopencv_test_superres_pch_dephelp.a" />
+					<Add library="D:/Program/opencv/binaries/lib/libopencv_test_video_pch_dephelp.a" />
+					<Add library="D:/Program/opencv/binaries/lib/libopencv_test_videoio_pch_dephelp.a" />
+					<Add library="D:/Program/opencv/binaries/lib/libopencv_ts_pch_dephelp.a" />
+					<Add library="D:/Program/opencv/binaries/lib/libopencv_ts320.a" />
+					<Add library="D:/Program/opencv/binaries/lib/libopencv_video_pch_dephelp.a" />
+					<Add library="D:/Program/opencv/binaries/lib/libopencv_video320.dll.a" />
+					<Add library="D:/Program/opencv/binaries/lib/libopencv_videoio_pch_dephelp.a" />
+					<Add library="D:/Program/opencv/binaries/lib/libopencv_videoio320.dll.a" />
+					<Add library="D:/Program/opencv/binaries/lib/libopencv_videostab_pch_dephelp.a" />
+					<Add library="D:/Program/opencv/binaries/lib/libopencv_videostab320.dll.a" />
+					<Add directory="D:/Program/CodeBlocks/opencv/x64/mingw/bin" />
+				</Linker>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/test_op2" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="copy_of_gnu_gcc_compiler" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-fexceptions" />
+		</Compiler>
+		<Unit filename="main.cpp" />
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
