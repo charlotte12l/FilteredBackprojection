@@ -1,6 +1,6 @@
 # FilteredBackprojection
 
-I wrote two versions (MATLAB & C++) to implement the Filtered Backprojection Algorithm
+I wrote two versions (MATLAB & C++) to implement the [Filtered Backprojection Algorithm](https://en.wikipedia.org/wiki/Radon_transform#Dual_transform)
 
 ## 1. MATLAB
 This is the overview of GUI. There are 5 modules:![](https://github.com/charlotte12l/FilteredBackprojection/blob/master/GUI_overview.png) 
