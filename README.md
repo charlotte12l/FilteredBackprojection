@@ -3,7 +3,7 @@
 I wrote two versions (MATLAB & C++) to implement the Filtered Backprojection Algorithm
 
 ## 1. MATLAB
-This is the ![overview](https://github.com/charlotte12l/FilteredBackprojection/blob/master/GUI_overview.png) of GUI. There are 5 modules:
+This is the overview of GUI. There are ![5 modules:](https://github.com/charlotte12l/FilteredBackprojection/blob/master/GUI_overview.png) 
 
 ###1.1 Read Image
 Click "Shepp Logan" to open a standard Shepp Logan model
@@ -27,6 +27,6 @@ After filtering, click "Reconstruction" to realize reconstruction
 After reconstruction, click "reconstruction evaluation" to calculate and display the normalized mean square distance criterion D and normalized average absolute distance criterion R.
 
 ### Result
-This is the result of using the GUI for shepp logan.
+This is the result of using the GUI for shepp logan.![](https://github.com/charlotte12l/FilteredBackprojection/blob/master/GUI_overview.png)
 
 
